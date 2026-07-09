@@ -46,11 +46,11 @@ Key properties:
 Internet
    │
    ▼
-Cloudflare (DNS + Tunnel/Access) ── managed entirely by ../synology-site-deployer
+Cloudflare (DNS + Tunnel/Access) ── managed entirely by your deployer (e.g. ../synology-site-deployer)
    │
    ▼
-synology-site-deployer reverse proxy / tunnel connector on the NAS
-   │  routes only https://ai.veloso.dev -> open-webui:${OPEN_WEBUI_PORT}
+deployer's reverse proxy / tunnel connector on the NAS
+   │  routes only https://${LOCAL_AI_DOMAIN} -> open-webui:${OPEN_WEBUI_PORT}
    ▼
 open-webui container (same as MVP)
    │

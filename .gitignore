@@ -1,4 +1,6 @@
 # Environment
+# *.env also covers real per-site files under workspaces/<name>/site.env — see workspaces/README.md.
+# Only tracked *.env.example templates (top-level and under workspaces/) are meant to be committed.
 .env
 *.env
 !.env.example

@@ -90,9 +90,9 @@
 
 ## DNS / reverse proxy issues
 
-- This repo does not manage DNS or reverse proxy config. If `ai.veloso.dev` (or your configured
-  hostname) isn't resolving or routing correctly, that's a
-  [`../synology-site-deployer`](../../synology-site-deployer) concern — see its own
+- This repo does not manage DNS or reverse proxy config. If your configured `LOCAL_AI_DOMAIN`
+  isn't resolving or routing correctly, that's a
+  [`../synology-site-deployer`](../../synology-site-deployer) (or your equivalent deployer) concern — see its own
   documentation, not this repo's.
 
 ## Deployer integration issues

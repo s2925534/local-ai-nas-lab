@@ -7,6 +7,17 @@ inference for everyday tasks — brainstorming, rewriting, summarising, app plan
 help, document Q&A — with a documented path toward memory, feedback capture, and (far future) a
 personal fine-tuned model.
 
+This project is generic and configurable: no domain, hostname, or NAS volume path is hardcoded
+anywhere. Clone it, set your own `.env`, and optionally deploy it with your own instance of a
+Synology deployment tool (e.g. [`synology-site-deployer`](../synology-site-deployer)) — nothing
+here assumes a specific person's setup.
+
+## Developer
+
+Developed by Pedro Veloso.
+
+Contact: `pedro@veloso.dev`
+
 ## What this project does
 
 - Runs open local models on your own hardware via Ollama.
@@ -141,13 +152,18 @@ Every persistent file this project writes lives under a single variable:
   final path on the NAS and provides it. This repo does not need to know or care which volume that
   is. See [`docs/deployer-integration.md`](docs/deployer-integration.md).
 
+If you're deploying this same repo to more than one site (your own NAS, a friend's, a test box),
+see [`workspaces/README.md`](workspaces/README.md) for a convention that keeps each site's
+domain/name/path in its own gitignored file instead of juggling one `.env`.
+
 ## Domain / public exposure
 
 Cloudflare, DNS, tunnels, certificates, and reverse proxy routing are **not** implemented in this
-repo. They are handled entirely by the separate
-[`synology-site-deployer`](../synology-site-deployer) project. This repo only documents the
-expected setup: recommended hostname `ai.veloso.dev` (configurable, not hardcoded), routing only to
-Open WebUI, never to Ollama. See [`docs/reverse-proxy-domain.md`](docs/reverse-proxy-domain.md).
+repo. They are handled entirely by a separate deployer project (e.g.
+[`synology-site-deployer`](../synology-site-deployer)). This repo only documents the expected
+setup: a fully configurable hostname (`LOCAL_AI_DOMAIN`, no domain hardcoded anywhere), routing
+only to Open WebUI, never to Ollama. See
+[`docs/reverse-proxy-domain.md`](docs/reverse-proxy-domain.md).
 
 ## Future directions (documented, not implemented in MVP)
 

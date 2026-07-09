@@ -40,7 +40,7 @@ deployer features:
    `scripts/bootstrap-local-ai.sh` for the folder-creation + model-pull + health-check convenience.
 4. If public exposure is wanted, the deployer separately runs its own Cloudflare/DNS/tunnel
    automation (e.g. `cloudflare-route`) pointed at the Open WebUI container's port
-   (`OPEN_WEBUI_PORT`, default `3000`) on the chosen hostname (`ai.veloso.dev` recommended, see
+   (`OPEN_WEBUI_PORT`, default `3000`) on whatever hostname you've set as `LOCAL_AI_DOMAIN` (see
    [`reverse-proxy-domain.md`](reverse-proxy-domain.md)). It must never route Ollama's port.
 
 ## Assumptions this repo makes about the deployer
@@ -58,6 +58,17 @@ deployer features:
 - The deployer routes only to Open WebUI's port. This repo assumes that constraint is honored and
   documents it repeatedly (README, security.md, reverse-proxy-domain.md) rather than enforcing it
   in code, since enforcement is out of scope for this repo.
+
+## Managing multiple sites from one clone
+
+If this repo is being reused to deploy the same stack to more than one site (your own NAS, a
+friend's NAS, a test box, etc.), keep each site's specific configuration — domain, display name,
+persistent path — in `workspaces/<name>/site.env` instead of editing the tracked `.env.example` or
+overwriting a single `.env` back and forth. See [`workspaces/README.md`](../workspaces/README.md).
+This mirrors `../synology-site-deployer`'s own workspace convention
+(`secrets/<workspace>/{cloudflare.env,nas.env}`); using the same `<name>` in both repos is a useful
+convention, but the two are not mechanically linked — this repo's `workspaces/` only affects this
+repo's `.env` values.
 
 ## What this repo will never do
 

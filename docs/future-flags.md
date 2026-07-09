@@ -22,9 +22,9 @@ work, tracked in `TODO.md` phases 5–9.
 ## Domain / exposure
 
 **`ENABLE_PUBLIC_DOMAIN`**
-Expose Open WebUI at `ai.veloso.dev` (or your configured `LOCAL_AI_DOMAIN`) through a
-deployer-managed reverse proxy or tunnel. Actual routing is implemented in
-`../synology-site-deployer`, never here.
+Expose Open WebUI at your configured `LOCAL_AI_DOMAIN` through a deployer-managed reverse proxy or
+tunnel. Actual routing is implemented by your deployer (e.g. `../synology-site-deployer`), never
+here.
 
 **`ENABLE_DEPLOYER_DOMAIN_MANAGEMENT`**
 Allow `../synology-site-deployer` to manage DNS, Cloudflare, tunnel, reverse proxy, certificates,

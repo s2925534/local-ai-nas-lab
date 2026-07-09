@@ -46,8 +46,9 @@ Still no code beyond Markdown prompt files.
 
 ## Phase 4 — Domain exposure readiness
 
-Documentation-only phase confirming `ai.veloso.dev` as the recommended hostname, restating that
-only Open WebUI is ever exposed, and providing a pre-exposure validation checklist. Actual exposure
+Documentation-only phase confirming `LOCAL_AI_DOMAIN` as a fully user-configurable hostname (no
+domain hardcoded), restating that only Open WebUI is ever exposed, and providing a pre-exposure
+validation checklist. Actual exposure
 work happens in `../synology-site-deployer`, not here.
 
 ## Phase 5 — Future private AI API (planning only)

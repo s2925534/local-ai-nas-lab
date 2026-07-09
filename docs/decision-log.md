@@ -45,9 +45,9 @@ this repo needing updates.
 **Context:** `../synology-site-deployer` already implements Cloudflare Tunnel + DNS automation,
 workspaces, and reverse-proxy routing. Duplicating that here would create two sources of truth for
 domain/certificate state.
-**Decision:** This repo only documents the expected exposure model (Open WebUI only, recommended
-hostname `ai.veloso.dev`) and leaves all Cloudflare/DNS/tunnel/certificate work to the deployer
-project.
+**Decision:** This repo only documents the expected exposure model (Open WebUI only, hostname fully
+configurable via `LOCAL_AI_DOMAIN`, no domain hardcoded) and leaves all Cloudflare/DNS/tunnel/
+certificate work to the deployer project.
 **Consequences:** This repo has zero Cloudflare API credentials, zero DNS logic, and stays usable
 standalone (LAN-only) even if the deployer project is never involved.
 
@@ -81,3 +81,21 @@ evaluated, and gated behind future flags (`ENABLE_FINE_TUNING_EXPERIMENTS`,
 are not implemented in the MVP.
 **Consequences:** No training code ships in this repository until those flags are deliberately
 acted on in a future, explicitly-scoped piece of work.
+
+## 0009 — Keep the repo generic; isolate any personal branding to `workspaces/`
+
+**Context:** This repo needs to be clonable by anyone and paired with their own instance of a
+Synology deployer (not necessarily `../synology-site-deployer` specifically), so no example
+hostname (e.g. an early draft used a personal `ai.<domain>` example throughout the docs) should
+read as "the" configuration. The only appropriate personal reference is developer attribution.
+**Decision:** Every domain/hostname example in docs and sample files uses a fully generic
+placeholder (`ai.example.com`, `ai.yourdomain.com`). The only personal information anywhere in the
+repo is the "Developer" section in `README.md` (name + contact email) and the LICENSE copyright
+line, both standard OSS attribution, not configuration. Multi-site users keep their own real
+domain/name/path in gitignored `workspaces/<name>/site.env` files (see
+[`workspaces/README.md`](../workspaces/README.md)), never in a tracked file.
+**Consequences:** A first-time cloner sees only generic examples and one clearly-labeled
+attribution section; nothing needs to be scrubbed or overridden before reuse. The `workspaces/`
+convention mirrors `../synology-site-deployer`'s own workspace pattern
+(`secrets/<workspace>/*.env`) so the two projects compose naturally for anyone managing multiple
+sites, without being mechanically coupled.
