@@ -54,13 +54,13 @@ work it describes.
 ## Phase 3 — Local usefulness
 
 - [x] Starter prompt library (`prompts/app-specs`, `prompts/coding`, `prompts/email`, `prompts/research`, `prompts/nas-admin`)
-- [ ] Expand prompt library with more task-specific templates
-- [ ] Document upload/RAG usage notes for Open WebUI
-- [ ] App Ideas assistant prompts (expanded)
-- [ ] Research assistant prompts (expanded)
-- [ ] Coding assistant prompts (expanded)
-- [ ] Model performance test log template (`examples/test-prompts.md` seed exists; expand)
-- [ ] `scripts/backup-local-ai.sh` (backup assistance, referenced in `README.md`, not part of minimal Phase 1)
+- [x] Expand prompt library with more task-specific templates (`mvp-feature-prioritizer`, `code-review-assistant`, `bug-to-fix-plan`, `meeting-follow-up`, `literature-comparison`, `container-log-triage`)
+- [x] Document upload/RAG usage notes for Open WebUI (`docs/document-qa-and-rag.md`)
+- [x] App Ideas assistant prompts (expanded — `mvp-feature-prioritizer.md`)
+- [x] Research assistant prompts (expanded — `literature-comparison.md`)
+- [x] Coding assistant prompts (expanded — `code-review-assistant.md`, `bug-to-fix-plan.md`)
+- [x] `scripts/backup-local-ai.sh` (backup assistance — tested end-to-end, excludes re-downloadable model weights)
+- [ ] Model performance test log template (`examples/test-prompts.md` seed exists; further expansion left for when real usage data accumulates)
 
 ## Phase 4 — Domain exposure readiness
 

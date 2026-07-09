@@ -173,10 +173,8 @@ docker compose down                  # stop containers
 docker compose logs -f               # tail logs
 ./scripts/pull-models.sh             # (re)pull the default model set
 ./scripts/health-check.sh            # check service health
+./scripts/backup-local-ai.sh         # back up data (documents/prompts/exports/memory/logs), skips model weights
 ```
-
-A backup script (`scripts/backup-local-ai.sh`) is planned but not yet part of this minimal Phase 1
-foundation — see `TODO.md` Phase 3.
 
 ## Security warning
 
@@ -184,6 +182,11 @@ This stack defaults to **LAN-only**. Read [`docs/security.md`](docs/security.md)
 any exposure setting. In short: never expose Ollama's port publicly, never expose DSM/SSH publicly,
 disable Open WebUI signup once you've created your account, and treat anything under
 `documents/` and the future `memory/` folder as private data.
+
+## Document Q&A
+
+Open WebUI has its own document upload and Q&A (RAG) feature built in — no extra setup in this
+repo is required to use it. See [`docs/document-qa-and-rag.md`](docs/document-qa-and-rag.md).
 
 ## Full manual
 
