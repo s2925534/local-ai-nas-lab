@@ -18,20 +18,22 @@ and [`deployer-integration.md`](deployer-integration.md) for why.
 2. **Get this repository onto the NAS.** Either:
    - Clone it directly on the NAS if `git` is available over SSH, or
    - Copy the files over (e.g. via File Station, `scp`, or Synology Drive), or
-   - Let [`../synology-site-deployer`](../../synology-site-deployer) deploy it later (see
-     [`deployer-integration.md`](deployer-integration.md)) — in that case, skip to step 5 once the
-     deployer has placed the files and `.env`.
+   - Let an external deployment tool of your choice (optional — e.g.
+     [`../synology-site-deployer`](../../synology-site-deployer)) deploy it later (see
+     [`deployer-integration.md`](deployer-integration.md)) — in that case, skip to step 5 once that
+     tool has placed the files and `.env`.
 3. **Copy `.env.example` to `.env`**:
    ```bash
    cp .env.example .env
    ```
-4. **Set `LOCAL_AI_BASE_PATH`** — only if running manually (not via the deployer). Point it at any
-   folder you control and want models/chat data/documents to persist in, for example a shared
+4. **Set `LOCAL_AI_BASE_PATH`** — only if running manually (not via an external tool). Point it at
+   any folder you control and want models/chat data/documents to persist in, for example a shared
    folder you've created for this purpose. Do not assume a specific volume; choose whatever path
-   exists on your NAS. If using `../synology-site-deployer`, skip this — the deployer manages the
-   path for you (see step 5).
-5. **If using `../synology-site-deployer`**, let it manage the deployment path and `.env`
-   generation instead of setting these yourself. See [`deployer-integration.md`](deployer-integration.md).
+   exists on your NAS. If using an external deployment tool, skip this — it manages the path for
+   you (see step 5).
+5. **If using an external deployment tool** (optional), let it manage the deployment path and
+   `.env` generation instead of setting these yourself. See
+   [`deployer-integration.md`](deployer-integration.md).
 6. **Run the bootstrap script** to create folders, start containers, pull models, and health-check
    in one step:
    ```bash
@@ -50,9 +52,9 @@ and [`deployer-integration.md`](deployer-integration.md) for why.
 10. **Confirm containers restart** — reboot the NAS (or `docker compose restart`) and confirm both
     `localai-ollama` and `localai-open-webui` come back automatically
     (`restart: unless-stopped` in `docker-compose.yml` handles this).
-11. **Keep LAN-only** until secure public access is ready through
-    [`../synology-site-deployer`](../../synology-site-deployer). Do not port-forward or expose
-    Ollama in the meantime — see [`security.md`](security.md).
+11. **Keep LAN-only** until secure public access is ready through whichever external tool you've
+    chosen for that (if any) — e.g. [`../synology-site-deployer`](../../synology-site-deployer). Do
+    not port-forward or expose Ollama in the meantime — see [`security.md`](security.md).
 
 ## Validation performed vs. deferred
 

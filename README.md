@@ -7,10 +7,13 @@ inference for everyday tasks — brainstorming, rewriting, summarising, app plan
 help, document Q&A — with a documented path toward memory, feedback capture, and (far future) a
 personal fine-tuned model.
 
-This project is generic and configurable: no domain, hostname, or NAS volume path is hardcoded
-anywhere. Clone it, set your own `.env`, and optionally deploy it with your own instance of a
-Synology deployment tool (e.g. [`synology-site-deployer`](../synology-site-deployer)) — nothing
-here assumes a specific person's setup.
+This project is generic, configurable, and fully usable standalone: no domain, hostname, or NAS
+volume path is hardcoded anywhere, and nothing here requires any particular deployment tool. Clone
+it, set your own `.env`, and run it directly with Docker Compose — that's it. If you'd rather
+automate deployment or public exposure, you can optionally pair it with whatever tool you already
+use for that (a reverse proxy, Cloudflare Tunnel directly, a Synology deployment tool, etc.); the
+maintainer's own is [`synology-site-deployer`](../synology-site-deployer), used here purely as a
+worked example, not a requirement.
 
 ## Developer
 
@@ -22,7 +25,8 @@ Contact: `pedro@veloso.dev`
 
 - Runs open local models on your own hardware via Ollama.
 - Gives you a normal chat UI (Open WebUI) reachable on your LAN, with an optional path to private
-  remote access (Tailscale) or public exposure (handled by a separate deployer project).
+  remote access (Tailscale) or public exposure — using whatever reverse-proxy/tunnel tool you
+  prefer, entirely outside this repo.
 - Keeps all persistent data — models, chats, documents, prompts, exports, backups, logs — under a
   single configurable base path, so it is portable across a Synology NAS, a plain Linux box, or a
   laptop.
@@ -37,8 +41,11 @@ Contact: `pedro@veloso.dev`
   products. Local open models on NAS-class hardware are smaller and slower. This project exists to
   absorb repetitive, lower-stakes tasks and reduce paid API usage — not to match frontier quality.
 - It does **not** implement Cloudflare, DNS, tunnels, certificates, or reverse proxy automation.
-  That is the job of the separate [`synology-site-deployer`](../synology-site-deployer) project.
-  See [`docs/deployer-integration.md`](docs/deployer-integration.md).
+  That's entirely outside this repo's scope — use whatever tool you already rely on for it (a
+  Synology deployment tool, a reverse proxy, Cloudflare Tunnel directly, or nothing at all if you
+  stay LAN-only). The maintainer's own tool is
+  [`synology-site-deployer`](../synology-site-deployer), documented here only as one worked
+  example. See [`docs/deployer-integration.md`](docs/deployer-integration.md).
 - It does **not** train or fine-tune any model in the MVP. See
   [`docs/learning-and-self-improvement.md`](docs/learning-and-self-improvement.md) for the
   documented (not implemented) future path.
@@ -77,10 +84,10 @@ Contact: `pedro@veloso.dev`
                          └─────────────────────────────┘
 ```
 
-Public exposure (optional, future, deployer-managed):
+Public exposure (optional, entirely outside this repo, managed by whatever tool you choose):
 
 ```
-Internet -> Cloudflare -> synology-site-deployer -> Open WebUI only (never Ollama)
+Internet -> Cloudflare/reverse-proxy/tunnel (your choice of tool) -> Open WebUI only (never Ollama)
 ```
 
 See [`docs/architecture.md`](docs/architecture.md) for the full picture, including the portable
@@ -148,9 +155,10 @@ Every persistent file this project writes lives under a single variable:
 
 - Running manually (on a NAS, a Linux box, or a laptop): set `LOCAL_AI_BASE_PATH` in `.env` to any
   folder you control. The safe local default is `./data/local-ai`.
-- Running via [`../synology-site-deployer`](../synology-site-deployer): the deployer decides the
-  final path on the NAS and provides it. This repo does not need to know or care which volume that
-  is. See [`docs/deployer-integration.md`](docs/deployer-integration.md).
+- Running via an external deployment tool (optional — e.g.
+  [`synology-site-deployer`](../synology-site-deployer), or any equivalent tool of your choice):
+  that tool decides the final path on the NAS and provides it. This repo does not need to know or
+  care which volume that is. See [`docs/deployer-integration.md`](docs/deployer-integration.md).
 
 If you're deploying this same repo to more than one site (your own NAS, a friend's, a test box),
 see [`workspaces/README.md`](workspaces/README.md) for a convention that keeps each site's
@@ -159,10 +167,12 @@ domain/name/path in its own gitignored file instead of juggling one `.env`.
 ## Domain / public exposure
 
 Cloudflare, DNS, tunnels, certificates, and reverse proxy routing are **not** implemented in this
-repo. They are handled entirely by a separate deployer project (e.g.
-[`synology-site-deployer`](../synology-site-deployer)). This repo only documents the expected
-setup: a fully configurable hostname (`LOCAL_AI_DOMAIN`, no domain hardcoded anywhere), routing
-only to Open WebUI, never to Ollama. See
+repo, and no such tool is required to use it — LAN-only Docker Compose is fully sufficient on its
+own. If you do want automated public exposure later, use whatever tool you already have for that
+(a Synology deployment tool such as [`synology-site-deployer`](../synology-site-deployer), a
+reverse proxy, Cloudflare Tunnel directly — this repo has no opinion). This repo only documents
+the expected setup: a fully configurable hostname (`LOCAL_AI_DOMAIN`, no domain hardcoded
+anywhere), routing only to Open WebUI, never to Ollama. See
 [`docs/reverse-proxy-domain.md`](docs/reverse-proxy-domain.md).
 
 ## Future directions (documented, not implemented in MVP)

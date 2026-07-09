@@ -33,10 +33,11 @@ Cloudflare automation. LAN-only by default.
 
 ## Phase 2 — Deployer integration readiness
 
-Document (not implement) how `../synology-site-deployer` should consume this repo: clone/pull it,
-provide `.env` (with a deployer-chosen `LOCAL_AI_BASE_PATH`), run `docker compose up -d` or this
-repo's bootstrap script, and separately configure Cloudflare Tunnel / DNS to route only to Open
-WebUI. See [`deployer-integration.md`](deployer-integration.md).
+Document (not implement) how an optional external deployment tool could consume this repo: clone/
+pull it, provide `.env` (with an externally-chosen `LOCAL_AI_BASE_PATH`), run `docker compose up -d`
+or this repo's bootstrap script, and separately configure Cloudflare Tunnel / DNS to route only to
+Open WebUI. Worked example: `../synology-site-deployer` — but any equivalent tool integrates the
+same way, and none is required. See [`deployer-integration.md`](deployer-integration.md).
 
 ## Phase 3 — Local usefulness
 
@@ -48,8 +49,8 @@ Still no code beyond Markdown prompt files.
 
 Documentation-only phase confirming `LOCAL_AI_DOMAIN` as a fully user-configurable hostname (no
 domain hardcoded), restating that only Open WebUI is ever exposed, and providing a pre-exposure
-validation checklist. Actual exposure
-work happens in `../synology-site-deployer`, not here.
+validation checklist. Actual exposure work happens in whichever external tool the user chooses (if
+any), not here.
 
 ## Phase 5 — Future private AI API (planning only)
 

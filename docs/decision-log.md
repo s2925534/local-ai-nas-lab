@@ -33,23 +33,32 @@ does. See [`portable-local-mode.md`](portable-local-mode.md) and
 ## 0004 — Never hardcode a Synology volume path
 
 **Context:** `/volume1` is a Synology-specific convention. Hardcoding it would break portability
-and would also duplicate a concern the deployer project already owns.
+and would also duplicate a concern that belongs to whatever external deployment tool (if any) a
+given user pairs this repo with.
 **Decision:** No file in this repo references `/volume1`, `/volume2`, or any specific NAS volume
 as a required default. `.env.example` uses `./data/local-ai`; documentation shows
-`/path/managed/by/deployer/local-ai` only as an illustrative example of a deployer-provided path.
-**Consequences:** The deployer project is free to choose and change its NAS path convention without
-this repo needing updates.
+`/path/managed/by/your/deployment/tool/local-ai` only as an illustrative example of an
+externally-provided path.
+**Consequences:** Any external tool (or a human, manually) is free to choose and change its own NAS
+path convention without this repo needing updates.
 
-## 0005 — Do not implement Cloudflare/DNS/reverse proxy automation in this repo
+## 0005 — Do not implement Cloudflare/DNS/reverse proxy automation in this repo, and do not require any specific external tool
 
-**Context:** `../synology-site-deployer` already implements Cloudflare Tunnel + DNS automation,
-workspaces, and reverse-proxy routing. Duplicating that here would create two sources of truth for
-domain/certificate state.
+**Context:** Cloudflare Tunnel + DNS automation and reverse-proxy routing are concerns already
+solved by various existing tools (the maintainer uses `../synology-site-deployer`; others may use
+Traefik, Nginx Proxy Manager, Cloudflare Tunnel directly, or a different Synology deployment tool
+entirely). Duplicating that logic here would create two sources of truth for domain/certificate
+state, and hardwiring this repo to one specific tool would make it useless to anyone who doesn't
+use that exact tool.
 **Decision:** This repo only documents the expected exposure model (Open WebUI only, hostname fully
 configurable via `LOCAL_AI_DOMAIN`, no domain hardcoded) and leaves all Cloudflare/DNS/tunnel/
-certificate work to the deployer project.
-**Consequences:** This repo has zero Cloudflare API credentials, zero DNS logic, and stays usable
-standalone (LAN-only) even if the deployer project is never involved.
+certificate work to whatever external tool the user chooses, or to LAN-only mode with no external
+tool at all. `../synology-site-deployer` is documented only as one worked example in
+[`deployer-integration.md`](deployer-integration.md), never as a requirement.
+**Consequences:** This repo has zero Cloudflare API credentials, zero DNS logic, and zero
+dependency on any particular external tool — it stays fully usable standalone (LAN-only) whether or
+not any deployer is ever involved, and works identically with a different tool than the one used in
+the worked example.
 
 ## 0006 — Keep Ollama private by default
 
@@ -99,3 +108,21 @@ attribution section; nothing needs to be scrubbed or overridden before reuse. Th
 convention mirrors `../synology-site-deployer`'s own workspace pattern
 (`secrets/<workspace>/*.env`) so the two projects compose naturally for anyone managing multiple
 sites, without being mechanically coupled.
+
+## 0010 — No external deployment tool is ever required; `../synology-site-deployer` is one example among many
+
+**Context:** Early drafts of the docs referred to "the deployer" in a way that read as though
+`../synology-site-deployer` specifically was a required dependency for reverse-proxy/domain
+concerns. In reality, this repo's entire contract with any external tool is just: someone provides
+an `.env` and runs `docker compose up -d` (optionally via `scripts/bootstrap-local-ai.sh`), and
+optionally, some tool routes a hostname to Open WebUI's port. Any Synology deployment tool, generic
+reverse proxy, or manual setup satisfies that contract identically.
+**Decision:** Every doc was reworded so `../synology-site-deployer` is presented explicitly as one
+worked example of an optional pattern, never as "the" tool or an implied dependency. `.env.example`
+now defaults `REVERSE_PROXY_PROVIDER=none` (nothing external in the LAN-only default) instead of
+`deployer_managed`, with `external` as the generic value for "some tool handles this, whichever one
+you use." `docs/deployer-integration.md` states this explicitly at the top and structures its
+"worked example" section so it clearly reads as illustrative, not prescriptive.
+**Consequences:** This repo is equally useful to someone using `../synology-site-deployer`, a
+different Synology deployment tool, a generic reverse proxy, or nobody at all beyond plain Docker
+Compose. No doc implies the project is incomplete without a specific external tool.

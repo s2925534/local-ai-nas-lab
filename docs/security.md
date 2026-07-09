@@ -31,8 +31,8 @@ into the NAS.
 If you eventually want your configured `LOCAL_AI_DOMAIN` to reach Open WebUI from the public
 internet:
 
-1. That is entirely handled by your deployer (e.g.
-   [`../synology-site-deployer`](../../synology-site-deployer)) —
+1. That is entirely handled by an external tool of your choice (e.g.
+   [`../synology-site-deployer`](../../synology-site-deployer), or any equivalent) —
    Cloudflare Tunnel, DNS, certificates, and reverse-proxy routing all live there. This repo does
    not implement any of it. See [`deployer-integration.md`](deployer-integration.md) and
    [`reverse-proxy-domain.md`](reverse-proxy-domain.md).

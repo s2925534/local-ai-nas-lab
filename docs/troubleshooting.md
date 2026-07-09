@@ -91,16 +91,18 @@
 ## DNS / reverse proxy issues
 
 - This repo does not manage DNS or reverse proxy config. If your configured `LOCAL_AI_DOMAIN`
-  isn't resolving or routing correctly, that's a
-  [`../synology-site-deployer`](../../synology-site-deployer) (or your equivalent deployer) concern — see its own
-  documentation, not this repo's.
+  isn't resolving or routing correctly, that's a concern for whichever external tool you're using
+  for exposure (e.g. [`../synology-site-deployer`](../../synology-site-deployer), or your
+  equivalent) — see that tool's own documentation, not this repo's.
 
-## Deployer integration issues
+## External deployment tool integration issues
 
-- Confirm the deployer actually generated/copied a valid `.env` before starting the stack.
-- Confirm the deployer set `LOCAL_AI_BASE_PATH` to a real, writable, persistent path — this repo
-  will refuse to run folder creation if the variable is empty (see `scripts/create-folders.sh`).
-- See [`deployer-integration.md`](deployer-integration.md) for the full expected handoff.
+- If you're using an external tool to deploy this repo, confirm it actually generated/copied a
+  valid `.env` before starting the stack.
+- Confirm that tool set `LOCAL_AI_BASE_PATH` to a real, writable, persistent path — this repo will
+  refuse to run folder creation if the variable is empty (see `scripts/create-folders.sh`).
+- See [`deployer-integration.md`](deployer-integration.md) for the full expected handoff (this only
+  applies if you're using an external tool at all — it's optional).
 
 ## Slow responses on CPU
 
@@ -126,11 +128,11 @@
   attached to it: `docker network inspect local_ai_net`. Recreate the stack with `docker compose
   down && docker compose up -d` if the network looks wrong.
 
-## Deployer did not provide a persistent path
+## No persistent path was provided
 
-- If `LOCAL_AI_BASE_PATH` is unset or empty, `scripts/create-folders.sh` will refuse to run rather
-  than silently creating folders somewhere unexpected. Set it explicitly in `.env` before
-  proceeding.
+- If `LOCAL_AI_BASE_PATH` is unset or empty — whether you're setting it yourself or an external
+  deployment tool was supposed to — `scripts/create-folders.sh` will refuse to run rather than
+  silently creating folders somewhere unexpected. Set it explicitly in `.env` before proceeding.
 
 ## `.env` not loaded
 

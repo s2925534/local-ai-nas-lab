@@ -1,8 +1,11 @@
 # Reverse proxy / domain
 
-**This repo does not implement Cloudflare, DNS, tunnel, certificate, or reverse-proxy automation.**
-All of that is handled by the separate [`synology-site-deployer`](../../synology-site-deployer)
-project (or your own equivalent deployer). This document exists so the deployer (or you, manually)
+**This repo does not implement Cloudflare, DNS, tunnel, certificate, or reverse-proxy automation,
+and does not require any tool that does.** LAN-only is a complete, fully supported way to run this
+project forever. If you do want public exposure, that's handled entirely by an external tool of
+your choice — the maintainer uses
+[`synology-site-deployer`](../../synology-site-deployer), but any equivalent deployer, reverse
+proxy, or tunnel tool works the same way. This document exists so that tool (or you, manually)
 knows exactly what to route and what not to route.
 
 ## Choosing a hostname
@@ -34,17 +37,17 @@ That's the only route. Specifically:
 
 | Concern | Owner |
 |---|---|
-| DNS records | your deployer (e.g. `../synology-site-deployer`) |
-| Cloudflare Tunnel / Access | your deployer |
-| TLS certificates | your deployer (typically via Cloudflare) |
-| Reverse proxy ingress rules | your deployer |
-| Which container/port gets routed | This repo documents it; the deployer configures it |
-| NAS volume / persistent path | Your deployer decides at deploy time; this repo never assumes one |
+| DNS records | your chosen external tool (e.g. `../synology-site-deployer`), if any |
+| Cloudflare Tunnel / Access | your chosen external tool, if any |
+| TLS certificates | your chosen external tool, if any (typically via Cloudflare) |
+| Reverse proxy ingress rules | your chosen external tool, if any |
+| Which container/port gets routed | This repo documents it; your chosen external tool configures it |
+| NAS volume / persistent path | Your chosen external tool decides at deploy time, if used; this repo never assumes one |
 
 This repo's job is to stay predictable: a fixed service name (`localai-open-webui`) and a
-configurable port (`OPEN_WEBUI_PORT`, default `3000`) that a deployer's tunnel/reverse-proxy config
-can point at. See [`deployer-integration.md`](deployer-integration.md) for how that handoff is
-expected to work with `../synology-site-deployer` specifically.
+configurable port (`OPEN_WEBUI_PORT`, default `3000`) that any tunnel/reverse-proxy tool can point
+at. See [`deployer-integration.md`](deployer-integration.md) for how that handoff is expected to
+work, illustrated with `../synology-site-deployer` as one example.
 
 ## Before enabling public exposure
 

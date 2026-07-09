@@ -45,14 +45,16 @@ work it describes.
 
 ## Phase 2 — Deployer integration readiness
 
-- [x] Document how `../synology-site-deployer` should consume this repo (`docs/deployer-integration.md`)
+- [x] Document how an external deployment tool could consume this repo, worked example `../synology-site-deployer` (`docs/deployer-integration.md`)
 - [ ] Add optional deployer-facing metadata file if useful (e.g. `deploy.meta.json`) — deferred, not required for MVP
-- [x] Confirm deployer-managed persistent path expectation (`LOCAL_AI_BASE_PATH`)
-- [x] Confirm deployer-managed Cloudflare/domain expectation
+- [x] Confirm externally-managed persistent path expectation (`LOCAL_AI_BASE_PATH`)
+- [x] Confirm externally-managed Cloudflare/domain expectation
 - [x] Confirm this repo avoids direct Cloudflare implementation
 - [x] Remove all personal/domain-specific examples (e.g. a personal hostname) from docs and sample files — replaced with fully generic placeholders (`docs/decision-log.md` 0009)
 - [x] Add `workspaces/` convention (mirroring the deployer's own workspace pattern) so multi-site users keep real domain/name/path in gitignored per-site files instead of a tracked file
 - [x] Add "Developer" attribution section to `README.md` (name + contact only — the sole personal reference in the repo)
+- [x] Reword every doc so no external deployment tool (including `../synology-site-deployer`) reads as required — it's one optional worked example among many equivalent tools (`docs/decision-log.md` 0010)
+- [x] Change `.env.example` / sample envs default `REVERSE_PROXY_PROVIDER` from `deployer_managed` to `none`/`external` — tool-agnostic values
 
 ## Phase 3 — Local usefulness
 
@@ -68,7 +70,7 @@ work it describes.
 ## Phase 4 — Domain exposure readiness
 
 - [x] Document `LOCAL_AI_DOMAIN` as a fully user-configurable hostname, no domain hardcoded (`docs/reverse-proxy-domain.md`)
-- [x] Document that Cloudflare/DNS is handled by `../synology-site-deployer`
+- [x] Document that Cloudflare/DNS is handled by whichever external tool the user chooses (if any) — never required, illustrated with `../synology-site-deployer` as one example
 - [x] Document that only Open WebUI should ever be exposed
 - [x] Document that Ollama must remain private
 - [ ] Add a pre-public-exposure validation checklist as a standalone doc (currently embedded in `docs/security.md` / `docs/reverse-proxy-domain.md`; consider splitting out)

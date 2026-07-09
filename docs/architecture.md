@@ -40,16 +40,17 @@ Key properties:
   `docker compose up -d` does not lose data.
 - No reverse proxy, no TLS, no public exposure. LAN-only by default.
 
-## 2. Deployer-managed public exposure architecture (future, documented only)
+## 2. Optional externally-managed public exposure architecture (future, documented only)
 
 ```
 Internet
    │
    ▼
-Cloudflare (DNS + Tunnel/Access) ── managed entirely by your deployer (e.g. ../synology-site-deployer)
-   │
+Cloudflare (DNS + Tunnel/Access) ── managed entirely by whatever external tool you choose
+   │                                  (this repo has no opinion which — e.g. ../synology-site-deployer,
+   │                                   a reverse proxy, or Cloudflare Tunnel directly)
    ▼
-deployer's reverse proxy / tunnel connector on the NAS
+that tool's reverse proxy / tunnel connector on the NAS
    │  routes only https://${LOCAL_AI_DOMAIN} -> open-webui:${OPEN_WEBUI_PORT}
    ▼
 open-webui container (same as MVP)
@@ -59,8 +60,9 @@ ollama container — never reachable from the tunnel, LAN/host-only
 ```
 
 This repo's only responsibility toward this architecture is to expose a predictable service name
-and port for the deployer to point at, and to document that Ollama must never be included in any
-public route. See [`deployer-integration.md`](deployer-integration.md) and
+and port for an external tool to point at (if you choose to use one at all), and to document that
+Ollama must never be included in any public route. See
+[`deployer-integration.md`](deployer-integration.md) and
 [`reverse-proxy-domain.md`](reverse-proxy-domain.md).
 
 ## 3. Portable local future architecture (future, documented only)

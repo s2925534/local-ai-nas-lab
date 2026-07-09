@@ -22,13 +22,14 @@ work, tracked in `TODO.md` phases 5–9.
 ## Domain / exposure
 
 **`ENABLE_PUBLIC_DOMAIN`**
-Expose Open WebUI at your configured `LOCAL_AI_DOMAIN` through a deployer-managed reverse proxy or
-tunnel. Actual routing is implemented by your deployer (e.g. `../synology-site-deployer`), never
-here.
+Expose Open WebUI at your configured `LOCAL_AI_DOMAIN` through whatever external reverse proxy or
+tunnel tool you use. Actual routing is implemented by that tool (e.g. `../synology-site-deployer`,
+or any equivalent), never here.
 
 **`ENABLE_DEPLOYER_DOMAIN_MANAGEMENT`**
-Allow `../synology-site-deployer` to manage DNS, Cloudflare, tunnel, reverse proxy, certificates,
-and hostname exposure for this project's Open WebUI instance.
+Allow an external deployment tool of your choice (e.g. `../synology-site-deployer`) to manage DNS,
+Cloudflare, tunnel, reverse proxy, certificates, and hostname exposure for this project's Open
+WebUI instance. This repo has no dependency on which tool, or whether one is used at all.
 
 **`ENABLE_TAILSCALE_ONLY_MODE`**
 Restrict UI access so only Tailscale clients can reach it (e.g. bind only to the Tailscale

@@ -8,7 +8,7 @@ re-deriving it.
 
 Let the entire project folder be copied to any computer (Mac, Linux, or Windows) and started with a
 single command, producing a fully working local AI chat instance with no NAS, no domain, and no
-`../synology-site-deployer` involvement.
+external deployment tool involvement of any kind.
 
 ## Design
 
@@ -46,9 +46,9 @@ mixed:
 
 | | NAS mode | Portable mode |
 |---|---|---|
-| `LOCAL_AI_BASE_PATH` | deployer-provided or a manually chosen persistent folder | `PORTABLE_DATA_PATH`, inside the project folder |
+| `LOCAL_AI_BASE_PATH` | externally-provided (if using a deployment tool) or a manually chosen persistent folder | `PORTABLE_DATA_PATH`, inside the project folder |
 | Bind hosts | Open WebUI on LAN, Ollama on `127.0.0.1` | both on `127.0.0.1` by default |
-| Public exposure | optional, via `../synology-site-deployer` | never |
+| Public exposure | optional, via whatever external tool you choose | never |
 | Started via | `scripts/bootstrap-local-ai.sh` | future `scripts/start.sh` / `start.ps1` |
 
 Do not point a portable instance's `.env` at a NAS path, and don't point a NAS instance's `.env` at
