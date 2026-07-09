@@ -35,8 +35,9 @@ work it describes.
 - [x] `scripts/health-check.sh`
 - [x] `LICENSE`
 - [x] Minimal starter prompt files (`prompts/`)
-- [x] Validate shell syntax (`bash -n`) on all scripts
-- [x] Validate Docker Compose syntax (`docker compose config`, best effort)
+- [x] Starter sample envs (`examples/sample-envs/`) and model test log template (`examples/test-prompts.md`)
+- [x] Validate shell syntax (`bash -n` / `sh -n`) on all scripts, plus a functional idempotency test of `create-folders.sh`
+- [x] Validate Docker Compose file structure (no Docker daemon available in this environment — `docker compose config` deferred to a real Docker host; see `docs/local-ai-nas-manual.md` validation checklist)
 - [x] Confirm `.env.example` variables match script usage
 - [x] Confirm no runtime data / `.env` staged
 - [x] Commit Phase 1 foundation
@@ -59,6 +60,7 @@ work it describes.
 - [ ] Research assistant prompts (expanded)
 - [ ] Coding assistant prompts (expanded)
 - [ ] Model performance test log template (`examples/test-prompts.md` seed exists; expand)
+- [ ] `scripts/backup-local-ai.sh` (backup assistance, referenced in `README.md`, not part of minimal Phase 1)
 
 ## Phase 4 — Domain exposure readiness
 

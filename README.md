@@ -173,8 +173,10 @@ docker compose down                  # stop containers
 docker compose logs -f               # tail logs
 ./scripts/pull-models.sh             # (re)pull the default model set
 ./scripts/health-check.sh            # check service health
-./scripts/backup-local-ai.sh         # back up persistent data (see script for scope)
 ```
+
+A backup script (`scripts/backup-local-ai.sh`) is planned but not yet part of this minimal Phase 1
+foundation — see `TODO.md` Phase 3.
 
 ## Security warning
 
