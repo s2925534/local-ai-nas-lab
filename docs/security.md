@@ -43,6 +43,8 @@ internet:
    reachable by anyone who can log in.
 4. Use strong, unique credentials for the Open WebUI admin account. This repo does not generate or
    manage passwords for you.
+5. Run through [`pre-exposure-checklist.md`](pre-exposure-checklist.md) immediately before flipping
+   on exposure — it collects every check above (and a few more) into one standalone list.
 
 ## Private data
 
