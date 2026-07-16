@@ -1,6 +1,6 @@
 # Architecture
 
-This document describes the MVP architecture plus four future architectures. Only the MVP
+This document describes the MVP architecture plus six future architectures. Only the MVP
 architecture is implemented; the rest are documented intent, gated behind the flags in
 [`future-flags.md`](future-flags.md).
 
@@ -132,3 +132,49 @@ Evaluation against the harness before any fine-tuned model is trusted
 
 This is explicitly far-future, opt-in, and not part of the MVP. See the "Far-future personal model
 path" section of [`learning-and-self-improvement.md`](learning-and-self-improvement.md).
+
+## 6. GPU / remote hardware future architecture (future, documented only)
+
+```
+                         ┌─────────────────────────────┐
+                         │   Browser (LAN client)        │
+                         └───────────────┬──────────────┘
+                                         │ http://<nas-ip>:${OPEN_WEBUI_PORT}
+                                         ▼
+                         ┌─────────────────────────────┐
+                         │  open-webui container (on NAS) │
+                         │  storage / UI / orchestration  │
+                         └───────────────┬──────────────┘
+                                         │ OLLAMA_BASE_URL points at a private
+                                         │ address instead of the local
+                                         │ `ollama` service (future ENABLE_GPU_REMOTE_BACKEND)
+                                         ▼
+                         ┌─────────────────────────────┐
+                         │  ollama on a GPU workstation    │
+                         │  reachable only over a trusted  │
+                         │  private network (LAN/Tailscale)│
+                         └─────────────────────────────┘
+```
+
+The NAS keeps its current job (Open WebUI, `LOCAL_AI_BASE_PATH`, backups); only the inference
+backend moves. Ollama's port is still never exposed publicly, on either host. Also unlocks the
+`ENABLE_LARGE_MODELS` tier (14B/32B/70B+) since a GPU backend has the VRAM/RAM the NAS lacks. See
+[`hardware-expansion.md`](hardware-expansion.md).
+
+## 7. Private local API future architecture (future, documented only)
+
+```
+Future mobile/web client or script
+   │  API key in request header (future ENABLE_API_KEY_AUTH)
+   ▼
+Local AI API wrapper (future ENABLE_LOCAL_AI_API)
+   │  task-specific endpoints: /rewrite, /summarise, /generate-app-spec,
+   │  /generate-codex-prompt, /ask-documents, /code-helper
+   │  (feedback/memory endpoints depend on architecture 4 existing first)
+   ▼
+ollama container (same as MVP) — over the internal Docker network, never a public route
+```
+
+A thin wrapper around Ollama, not a replacement for Open WebUI — Open WebUI remains the primary
+chat UI and the only service recommended for public exposure. See
+[`future-api-plan.md`](future-api-plan.md).

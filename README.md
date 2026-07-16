@@ -188,6 +188,12 @@ anywhere), routing only to Open WebUI, never to Ollama. See
   better hardware is available. See the "Far-future personal model path" section of
   [`docs/learning-and-self-improvement.md`](docs/learning-and-self-improvement.md) and
   [`docs/future-flags.md`](docs/future-flags.md).
+- **Private local API** — a thin, task-specific API wrapper around Ollama (rewrite, summarise, app
+  spec, code helper, document Q&A) with API key auth, for a future private mobile/web client. See
+  [`docs/future-api-plan.md`](docs/future-api-plan.md).
+- **Hardware expansion** — extending this architecture to a GPU workstation or remote Ollama
+  backend, with the NAS staying the storage/UI/orchestration layer, and what changes for larger
+  (14B+) models. See [`docs/hardware-expansion.md`](docs/hardware-expansion.md).
 
 ## Basic commands
 
@@ -207,7 +213,8 @@ docker compose logs -f               # tail logs
 This stack defaults to **LAN-only**. Read [`docs/security.md`](docs/security.md) before changing
 any exposure setting. In short: never expose Ollama's port publicly, never expose DSM/SSH publicly,
 disable Open WebUI signup once you've created your account, and treat anything under
-`documents/` and the future `memory/` folder as private data.
+`documents/` and the future `memory/` folder as private data. Before actually flipping on public
+exposure, run through [`docs/pre-exposure-checklist.md`](docs/pre-exposure-checklist.md).
 
 ## Document Q&A
 

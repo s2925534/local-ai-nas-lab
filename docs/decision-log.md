@@ -126,3 +126,29 @@ you use." `docs/deployer-integration.md` states this explicitly at the top and s
 **Consequences:** This repo is equally useful to someone using `../synology-site-deployer`, a
 different Synology deployment tool, a generic reverse proxy, or nobody at all beyond plain Docker
 Compose. No doc implies the project is incomplete without a specific external tool.
+
+## 0011 — Fill remaining Phase 4–9 documentation gaps and reconcile `TODO.md` with docs already written
+
+**Context:** `TODO.md` still had unchecked boxes for Phase 4 (standalone pre-exposure checklist),
+Phase 5 (API plan), and Phase 6 (hardware expansion) with no dedicated doc backing them — only
+scattered one-line mentions in `future-flags.md` and `phase-plan.md`. Separately, Phase 8 and 9's
+boxes were unchecked even though `learning-and-self-improvement.md` already substantively covered
+every item in both phases (feedback capture format, storage tiers, retrieval-as-context, evaluation
+harness, fine-tuning/distillation/personal-model planning, licensing/provenance constraints,
+hardware gating) — those checkboxes were simply stale relative to the doc's own content.
+**Decision:** Added three new standalone docs — `pre-exposure-checklist.md` (Phase 4, extracted and
+consolidated from checklist items already in `security.md` and `reverse-proxy-domain.md`),
+`future-api-plan.md` (Phase 5, consolidating the endpoint list from `future-flags.md` and the Phase
+8 memory-endpoint sketch from `learning-and-self-improvement.md` into one API design with an
+explicit "do not overbuild" section), and `hardware-expansion.md` (Phase 6, covering GPU backend,
+remote Ollama backend, the NAS-as-storage/UI/orchestration model, and large-model sizing notes).
+Updated `TODO.md`, `phase-plan.md`, `future-flags.md`, and `README.md` to cross-reference these, and
+checked off the Phase 8/9 boxes that `learning-and-self-improvement.md` already satisfied. Left
+Phase 2's optional `deploy.meta.json` and Phase 3's model performance test log expansion alone —
+both are deliberately deferred (the former has its own documented rationale in
+`deployer-integration.md`; the latter needs real usage data that doesn't exist yet), not oversights.
+Left Phase 7's `start`/`stop` scripts, SQLite metadata, and browser auto-launch alone — those are
+implementation work, not documentation, and out of scope for this pass.
+**Consequences:** Every phase's documentation-shaped TODO items now either have a doc backing them
+or an explicit, logged reason for staying deferred. `TODO.md` accurately reflects what's
+planned/documented vs. what's still genuinely unstarted.

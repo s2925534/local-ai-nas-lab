@@ -73,21 +73,21 @@ work it describes.
 - [x] Document that Cloudflare/DNS is handled by whichever external tool the user chooses (if any) — never required, illustrated with `../synology-site-deployer` as one example
 - [x] Document that only Open WebUI should ever be exposed
 - [x] Document that Ollama must remain private
-- [ ] Add a pre-public-exposure validation checklist as a standalone doc (currently embedded in `docs/security.md` / `docs/reverse-proxy-domain.md`; consider splitting out)
+- [x] Add a pre-public-exposure validation checklist as a standalone doc (`docs/pre-exposure-checklist.md`)
 
 ## Phase 5 — Future private AI API
 
-- [ ] Plan local API wrapper around Ollama
-- [ ] Plan API key authentication
-- [ ] Plan endpoints: rewrite, summarise, app spec, code helper, document Q&A, feedback, memory, prompt improvement
-- [ ] Do not overbuild unless explicitly requested
+- [x] Plan local API wrapper around Ollama (`docs/future-api-plan.md`)
+- [x] Plan API key authentication (`docs/future-api-plan.md`)
+- [x] Plan endpoints: rewrite, summarise, app spec, code helper, document Q&A, feedback, memory, prompt improvement (`docs/future-api-plan.md`)
+- [x] Do not overbuild unless explicitly requested (`docs/future-api-plan.md` "Explicitly out of scope")
 
 ## Phase 6 — Future hardware expansion
 
-- [ ] Document GPU backend option
-- [ ] Document remote Ollama backend option
-- [ ] Document NAS-as-storage/UI/orchestration-layer model
-- [ ] Document large-model notes (14B/32B/70B+)
+- [x] Document GPU backend option (`docs/hardware-expansion.md`)
+- [x] Document remote Ollama backend option (`docs/hardware-expansion.md`)
+- [x] Document NAS-as-storage/UI/orchestration-layer model (`docs/hardware-expansion.md`)
+- [x] Document large-model notes (14B/32B/70B+) (`docs/hardware-expansion.md`)
 
 ## Phase 7 — Future portable local mode
 
@@ -97,30 +97,30 @@ work it describes.
 - [ ] Portable data folder inside the project
 - [ ] Local browser auto-launch
 - [ ] SQLite or file-based local metadata where appropriate
-- [ ] Keep NAS mode and portable mode clearly separate
-- [ ] Document what can/cannot be truly portable (model size)
+- [x] Keep NAS mode and portable mode clearly separate (`docs/portable-local-mode.md` "Relationship to NAS deployment mode")
+- [x] Document what can/cannot be truly portable (model size) (`docs/portable-local-mode.md` "What is and isn't truly portable")
 
 ## Phase 8 — Future feedback learning loop
 
-- [ ] Feedback capture plan and format
-- [ ] Store ratings, corrections, accepted/rejected answers, preferred formats
-- [ ] Store project rules and user corrections
-- [ ] Markdown + JSONL now, SQLite later
-- [ ] Retrieve memory as context for future prompts
-- [ ] Improve prompt templates based on feedback
-- [ ] Evaluation harness for recurring tests
-- [ ] Explicitly do not retrain model weights in MVP
+- [x] Feedback capture plan and format (`docs/learning-and-self-improvement.md`)
+- [x] Store ratings, corrections, accepted/rejected answers, preferred formats (`docs/learning-and-self-improvement.md` "What gets captured")
+- [x] Store project rules and user corrections (`docs/learning-and-self-improvement.md`)
+- [x] Markdown + JSONL now, SQLite later (`docs/learning-and-self-improvement.md` "Storage ideas")
+- [x] Retrieve memory as context for future prompts (`docs/learning-and-self-improvement.md` "How it would be used")
+- [x] Improve prompt templates based on feedback (`docs/learning-and-self-improvement.md`, `ENABLE_PROMPT_OPTIMIZER`)
+- [x] Evaluation harness for recurring tests (`docs/learning-and-self-improvement.md`, `ENABLE_EVALUATION_HARNESS`)
+- [x] Explicitly do not retrain model weights in MVP (`docs/learning-and-self-improvement.md` "What this document is not")
 
 ## Phase 9 — Future model self-learning / personal model path
 
-- [ ] Plan fine-tuning experiments for small open models
-- [ ] Plan dataset creation from accepted corrections and high-quality outputs
-- [ ] Plan model evaluation before using any fine-tuned model
-- [ ] Plan knowledge distillation / teacher-student experiments
-- [ ] Plan learning from multiple models' outputs, respecting licenses/provenance
-- [ ] Document future "personal model" path built on open models + curated data
-- [ ] Document that training/fine-tuning needs better hardware than the NAS
-- [ ] Document that the goal is optional future experimentation, not uncontrolled self-modification
+- [x] Plan fine-tuning experiments for small open models (`docs/learning-and-self-improvement.md` "Far-future personal model path")
+- [x] Plan dataset creation from accepted corrections and high-quality outputs (`docs/learning-and-self-improvement.md`)
+- [x] Plan model evaluation before using any fine-tuned model (`docs/learning-and-self-improvement.md`)
+- [x] Plan knowledge distillation / teacher-student experiments (`docs/learning-and-self-improvement.md`)
+- [x] Plan learning from multiple models' outputs, respecting licenses/provenance (`docs/learning-and-self-improvement.md` constraints)
+- [x] Document future "personal model" path built on open models + curated data (`docs/learning-and-self-improvement.md`)
+- [x] Document that training/fine-tuning needs better hardware than the NAS (`docs/learning-and-self-improvement.md` constraints, `docs/hardware-expansion.md`)
+- [x] Document that the goal is optional future experimentation, not uncontrolled self-modification (`docs/learning-and-self-improvement.md` constraints)
 
 ## Notes
 
