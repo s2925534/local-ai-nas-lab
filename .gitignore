@@ -35,3 +35,6 @@ venv/
 
 # Node (in case future tooling uses it)
 node_modules/
+
+# Verbatim journal index: machine-local transcript paths, not portable
+/agent-context/journal-verbatim/
