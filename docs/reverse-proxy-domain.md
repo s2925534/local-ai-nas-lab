@@ -51,6 +51,6 @@ work, illustrated with `../synology-site-deployer` as one example.
 
 ## Before enabling public exposure
 
-See the checklist in [`security.md`](security.md) — disable signup, set a strong admin password,
-confirm only Open WebUI is routed, and review what's in `documents/` before it becomes reachable by
-anyone with valid login credentials.
+See [`pre-exposure-checklist.md`](pre-exposure-checklist.md) for the full standalone checklist —
+disable signup, set a strong admin password, confirm only Open WebUI is routed, and review what's
+in `documents/` before it becomes reachable by anyone with valid login credentials.

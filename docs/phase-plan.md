@@ -12,11 +12,11 @@ freely, since the whole point is to plan ahead.
 | 2     | Deployer integration readiness     | Not started |
 | 3     | Local usefulness                   | Not started |
 | 4     | Domain exposure readiness          | Not started |
-| 5     | Future private AI API              | Not started (planning only) |
-| 6     | Future hardware expansion          | Not started (planning only) |
+| 5     | Future private AI API              | Planned (documentation only, `docs/future-api-plan.md`) |
+| 6     | Future hardware expansion          | Planned (documentation only, `docs/hardware-expansion.md`) |
 | 7     | Future portable local mode         | Not started (planning only) |
-| 8     | Future feedback learning loop      | Not started (planning only) |
-| 9     | Future model self-learning / personal model | Not started (planning only) |
+| 8     | Future feedback learning loop      | Planned (documentation only, `docs/learning-and-self-improvement.md`) |
+| 9     | Future model self-learning / personal model | Planned (documentation only, `docs/learning-and-self-improvement.md`) |
 
 ## Phase 0 — Planning and documentation foundation
 
@@ -49,19 +49,21 @@ Still no code beyond Markdown prompt files.
 
 Documentation-only phase confirming `LOCAL_AI_DOMAIN` as a fully user-configurable hostname (no
 domain hardcoded), restating that only Open WebUI is ever exposed, and providing a pre-exposure
-validation checklist. Actual exposure work happens in whichever external tool the user chooses (if
-any), not here.
+validation checklist (`docs/pre-exposure-checklist.md`). Actual exposure work happens in whichever
+external tool the user chooses (if any), not here.
 
 ## Phase 5 — Future private AI API (planning only)
 
 Design (do not build, unless explicitly requested later) a thin local API wrapper around Ollama
 with task-specific endpoints (rewrite, summarise, app spec, code helper, document Q&A) and API key
-auth, so a future private mobile/web app could call it.
+auth, so a future private mobile/web app could call it. See
+[`future-api-plan.md`](future-api-plan.md).
 
 ## Phase 6 — Future hardware expansion (planning only)
 
 Document how this architecture extends to a GPU workstation or remote Ollama backend, with the NAS
-staying as the storage/UI/orchestration layer, and what changes for large models.
+staying as the storage/UI/orchestration layer, and what changes for large models. See
+[`hardware-expansion.md`](hardware-expansion.md).
 
 ## Phase 7 — Future portable local mode (planning only, minimal safe scaffolding allowed)
 

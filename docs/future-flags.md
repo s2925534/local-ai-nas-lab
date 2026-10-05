@@ -50,10 +50,12 @@ document Q&A.
 **`ENABLE_LOCAL_AI_API`**
 Create a local API wrapper around Ollama with task-specific endpoints:
 `POST /rewrite`, `POST /summarise`, `POST /generate-app-spec`, `POST /generate-codex-prompt`,
-`POST /ask-documents`, `POST /code-helper`. See Phase 5 in [`phase-plan.md`](phase-plan.md).
+`POST /ask-documents`, `POST /code-helper`. See Phase 5 in [`phase-plan.md`](phase-plan.md) and the
+full plan in [`future-api-plan.md`](future-api-plan.md).
 
 **`ENABLE_API_KEY_AUTH`**
-Protect the future local AI API with API keys.
+Protect the future local AI API with API keys. See [`future-api-plan.md`](future-api-plan.md)
+"Authentication plan".
 
 ## Assistants / prompt library
 
@@ -75,15 +77,17 @@ Prepare endpoints for a future private mobile app that connects to the NAS AI ba
 
 **`ENABLE_GPU_REMOTE_BACKEND`**
 Let Open WebUI connect to a future GPU workstation running Ollama remotely, while the NAS remains
-the storage/UI/orchestration layer. See Phase 6.
+the storage/UI/orchestration layer. See Phase 6 and [`hardware-expansion.md`](hardware-expansion.md).
 
 **`ENABLE_MULTI_MODEL_ROUTER`**
 Choose a model automatically based on task type — rewrite → small model, coding → coder model,
-research → stronger general model, documents → RAG + embedding model.
+research → stronger general model, documents → RAG + embedding model. See
+[`hardware-expansion.md`](hardware-expansion.md) "Multi-model routing".
 
 **`ENABLE_LARGE_MODELS`**
 Document/support 14B, 32B, 70B, or larger models, only once hardware is upgraded or a GPU backend
-is added. Not part of the MVP model set.
+is added. Not part of the MVP model set. See [`hardware-expansion.md`](hardware-expansion.md)
+"Large model notes".
 
 ## Operations
 
